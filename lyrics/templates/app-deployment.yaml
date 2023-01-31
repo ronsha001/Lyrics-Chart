@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "lyrics.fullname" . }}
@@ -6,7 +6,7 @@ metadata:
   labels:
     app: lyrics
 spec:
-  repilcas: {{ .Values.replicas }}
+  repilcas: {{ .Values.lyrics.replicas }}
   selector:
     matchLabels:
       app: lyrics
@@ -15,11 +15,24 @@ spec:
       labels:
         app: lyrics
     spec:
+      initContainers:
+      - name: wait-for-redis
+        image: giantswarm/tiny-tools:3.12
+        imagePullPolicy: IfNotPresent
+        command: ['sh', '-c', "until curl -I {{ .Release.Name }}-redis; do echo waiting for api...; sleep 5; done"]
       containers:
       - image: "{{ .Values.lyrics.image.name }}:{{ .Values.lyrics.image.tag }}"
         name: lyrics
         ports:
         - containerPort: {{ .Values.lyrics.port }}
+        envFrom:
+        - secretRef:
+            name: {{ .Release.Name }}-redis
+        env:
+        - name: REDIS_DNS
+          value: {{ .Release.Name }}-redis-master
+        - name: REDIS_PASSWORD
+          value: $(redis-password)
         resources:
           requests:
             memory: {{ .Values.lyrics.resources.requests.memory }}

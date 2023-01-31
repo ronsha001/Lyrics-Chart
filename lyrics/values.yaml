@@ -12,3 +12,5 @@ lyrics:
     limits:
       memory: 500Mi
       cpu: 500m
+  ingress:
+    enabled: false

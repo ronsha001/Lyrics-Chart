@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "lyrics.fullname" . }}
+  name: {{ include "lyrics.fullname" . }}-app
   namespace: {{ .Values.lyrics.namespace }}
   labels:
-    app: lyrics
+    app: {{ include "lyrics.fullname" . }}-app
 spec:
-  repilcas: {{ .Values.lyrics.replicas }}
+  replicas: {{ .Values.lyrics.replicas }}
   selector:
     matchLabels:
-      app: lyrics
+      app: {{ include "lyrics.fullname" . }}-app
   template:
     metadata:
       labels:
-        app: lyrics
+        app: {{ include "lyrics.fullname" . }}-app
     spec:
       initContainers:
       - name: redis-health-check

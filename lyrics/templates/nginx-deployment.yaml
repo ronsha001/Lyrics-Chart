@@ -1,18 +1,20 @@
+{{- if .Values.lyrics.nginx.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "lyrics.fullname" . }}-nginx
   namespace: {{ .Values.lyrics.namespace }}
   labels:
-    app: nginx
+    app: {{ include "lyrics.fullname" . }}-nginx
 spec:
+  replicas: {{ .Values.lyrics.nginx.replicas }}
   selector:
     matchLabels:
-      app: nginx
-  temaplate:
+      app: {{ include "lyrics.fullname" . }}-nginx
+  template:
     metadata:
       labels:
-        app: nginx
+        app: {{ include "lyrics.fullname" . }}-nginx
     spec:
       containers:
       - image: nginx:alpine
@@ -27,5 +29,8 @@ spec:
       volumes:
       - name: nginx-config
         hostPath: /home/ron/Desktop/Lyrics/Lyrics-App/nginx/nginx.conf
+        type: FileOrCreate
       - name: static-files
         hostPath: /home/ron/Desktop/Lyrics/Lyrics-App/static
+        type: DirectoryOrCreate
+{{- end }}

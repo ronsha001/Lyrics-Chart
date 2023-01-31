@@ -2,3 +2,28 @@ apiVersion: v1
 kind: Deployment
 metadata:
   name: {{ include "lyrics.fullname" . }}
+  namespace: {{ .Values.lyrics.namespace }}
+  labels:
+    app: lyrics
+spec:
+  repilcas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: lyrics
+  template:
+    metadata:
+      labels:
+        app: lyrics
+    spec:
+      containers:
+      - image: "{{ .Values.lyrics.image.name }}:{{ .Values.lyrics.image.tag }}"
+        name: lyrics
+        ports:
+        - containerPort: {{ .Values.lyrics.port }}
+        resources:
+          requests:
+            memory: {{ .Values.lyrics.resources.requests.memory }}
+            cpu: {{ .Values.lyrics.resources.requests.cpu }}
+          limits:
+            memory: {{ .Values.lyrics.resources.limits.memory }}
+            cpu: {{ .Values.lyrics.resources.limits.cpu }}

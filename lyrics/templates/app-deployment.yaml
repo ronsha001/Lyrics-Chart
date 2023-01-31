@@ -19,7 +19,7 @@ spec:
       - name: wait-for-redis
         image: giantswarm/tiny-tools:3.12
         imagePullPolicy: IfNotPresent
-        command: ['sh', '-c', "until curl -I {{ .Release.Name }}-redis; do echo waiting for api...; sleep 5; done"]
+        command: ['sh', '-c', "until curl -I {{ .Release.Name }}-redis-master:6379; do echo waiting for api...; sleep 5; done"]
       containers:
       - image: "{{ .Values.lyrics.image.name }}:{{ .Values.lyrics.image.tag }}"
         name: lyrics

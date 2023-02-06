@@ -5,6 +5,7 @@ lyrics:
   image:
     name: 651569844/lyrics
     tag: 1.0.1
+    pullPolicy: Always
   resources:
     requests:
       memory: 250Mi
@@ -12,9 +13,15 @@ lyrics:
     limits:
       memory: 500Mi
       cpu: 500m
-  ingress:
-    enabled: false
   nginx:
     enabled: true
     port: 80
     replicas: 2
+
+redis:
+  master:
+    persistence:
+      size: 1Gi
+  replica:
+    persistence:
+      size: 1Gi

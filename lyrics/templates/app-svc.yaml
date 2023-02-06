@@ -1,16 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "lyrics.fullname" . }}-app
+  name: {{ .Release.Name }}-app
 spec:
   selector:
-    app: lyrics
-  {{- if or (.Values.lyrics.nginx.enabled) (.Values.lyrics.ingress.enabled) }}
-  type: ClusterIP
-  {{- else }}
+    app: {{ include "lyrics.fullname" . }}-app
   type: LoadBalancer
-  {{- end}}
   ports:
     - protocol: TCP
       port: {{ .Values.lyrics.port }}
       targetPort: {{ .Values.lyrics.port }}
+      nodePort: 30001

@@ -5,14 +5,11 @@ metadata:
   name: {{ include "lyrics.fullname" . }}-nginx
 spec:
   selector:
-    app: lyrics
-  {{- if .Values.lyrics.ingress.enabled }}
-  type: ClusterIP
-  {{- else }}
+    app: {{ include "lyrics.fullname" . }}-nginx
   type: LoadBalancer
-  {{- end}}
   ports:
     - protocol: TCP
       port: {{ .Values.lyrics.nginx.port }}
       targetPort: {{ .Values.lyrics.nginx.port }}
+      nodePort: 30000
 {{- end }}

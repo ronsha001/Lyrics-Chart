@@ -23,10 +23,11 @@ spec:
         - secretRef:
             name: {{ .Release.Name }}-redis
         command: ['sh', '-c', "until redis-cli -h {{ .Release.Name }}-redis-master -p 6379 ping; do echo waiting for redis-service; sleep 2; done;"]
-        command: ['redis-cli', '-h', 'lyrics-redis-master', '-p', '6379', '-a', $(redis-password), 'set', 'healthcheck', '"this is a healthcheck"']
+        command: ['redis-cli', '-h', 'lyrics-redis-master', '-p', '6379', '-a', $(redis-password), 'set', 'healthcheck', '"this is an healthcheck"']
       containers:
       - image: "{{ .Values.lyrics.image.name }}:{{ .Values.lyrics.image.tag }}"
         name: lyrics
+        imagePullPolicy: {{ .Values.lyrics.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.lyrics.port }}
         envFrom:

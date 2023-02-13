@@ -2,5 +2,8 @@ dependencies:
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 17.6.0
-digest: sha256:e87a0d1e797059b90ff4d15523def09be2508e18943dfa56ba1b848d3a89e204
-generated: "2023-01-31T18:30:40.873690571+02:00"
+- name: ingress-nginx
+  repository: https://kubernetes.github.io/ingress-nginx
+  version: 4.4.0
+digest: sha256:dde56d749015f7ba37b50dfc2102b5594242cbd02039bd426219c6603436c501
+generated: "2023-02-07T17:26:59.41342398+02:00"

@@ -18,6 +18,10 @@ lyrics:
     port: 80
     replicas: 2
 
+ingress:
+  enabled: true
+  app-dns: lyrics
+
 redis:
   master:
     persistence:

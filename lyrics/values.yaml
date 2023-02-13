@@ -20,7 +20,14 @@ lyrics:
 
 ingress:
   enabled: true
-  app-dns: lyrics
+  host: lyrics
+
+ingress-nginx:
+  controller:
+    service:
+      nodePorts:
+        http: 30003
+        https: 30004
 
 redis:
   master:

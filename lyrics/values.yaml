@@ -35,5 +35,3 @@ redis:
   replica:
     persistence:
       size: 1Gi
-api:
-  image_tag: 1.1.1

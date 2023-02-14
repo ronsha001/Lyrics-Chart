@@ -28,4 +28,4 @@ redis:
     persistence:
       size: 1Gi
 api:
-  image_tag: 1.0.1
+  image_tag: 1.1.1

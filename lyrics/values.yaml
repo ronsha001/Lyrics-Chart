@@ -17,7 +17,6 @@ lyrics:
     enabled: true
     port: 80
     replicas: 2
-
 ingress:
   enabled: true
   host: lyrics
@@ -36,3 +35,5 @@ redis:
   replica:
     persistence:
       size: 1Gi
+api:
+  image_tag: 1.1.1

@@ -4,7 +4,7 @@ lyrics:
   port: 8000
   image:
     name: 651569844/lyrics
-    tag: 1.0.1
+    tag: 1.1.2
     pullPolicy: Always
   resources:
     requests:
@@ -20,14 +20,12 @@ lyrics:
 ingress:
   enabled: true
   host: lyrics
-
 ingress-nginx:
   controller:
     service:
       nodePorts:
         http: 30003
         https: 30004
-
 redis:
   master:
     persistence:

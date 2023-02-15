@@ -20,6 +20,10 @@ lyrics:
 ingress:
   enabled: true
   host: lyrics
+  static-files:
+    index-js:
+    main-css:
+    index-html:
 ingress-nginx:
   controller:
     service:

@@ -5,7 +5,10 @@ metadata:
   name: nginx-static
   namespace: {{ .Values.lyrics.namespace }}
 data:
-  index.js: {{ .Values.ingress.static_files.index_js }}
-  main.css: {{ .Values.ingress.static_files.main_css }}
-  index.html: {{ .Values.ingress.static_files.index_html }}
-{{- end }}
+  index.js: |-
+{{ .Files.Get "index.js" | indent 4 }}
+  index.html: |-
+{{ .Files.Get "index.html" | indent 4 }}
+  main.css: |-
+{{ .Files.Get "main.css" | indent 4 }}
+{{- end }} 

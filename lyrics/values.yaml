@@ -20,8 +20,8 @@ lyrics:
 ingress:
   enabled: true
   host: lyrics
-  static-files:
-    index-js: |-
+  static_files:
+    index_js: |-
       const inputElement = document.querySelector(".searchInp");
       const searchBtn = document.querySelector(".searchBtn");
       const textarea = document.querySelector(".textarea");
@@ -70,7 +70,7 @@ ingress:
               .catch((error) => console.error(error));
           });
       };
-    main-css: |-
+    main_css: |-
       body {
         padding: 0;
         margin: 0;
@@ -188,7 +188,7 @@ ingress:
       .textarea::-webkit-scrollbar-thumb:hover {
         background: #555;
       }
-    index-html: |-
+    index_html: |-
       <!DOCTYPE html>
       <html lang="en">
       <head>

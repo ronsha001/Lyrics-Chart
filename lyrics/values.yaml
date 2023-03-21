@@ -226,12 +226,8 @@ ingress:
         <script src="index.js"></script>
       </body>
       </html>
-ingress-nginx:
-  controller:
-    service:
-      nodePorts:
-        http: 30003
-        https: 30004
+
+
 redis:
   master:
     persistence:

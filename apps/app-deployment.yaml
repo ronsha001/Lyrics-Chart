@@ -16,7 +16,7 @@ spec:
         app: app-test
     spec:
       containers:
-      - image: 1.1.1
+      - image: 651569844/lyrics:1.1.1
         name: lyrics
         imagePullPolicy: IfNotPresent
         ports:

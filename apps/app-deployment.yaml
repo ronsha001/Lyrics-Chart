@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-test
+  namespace: lyrics
+  labels:
+    app: app-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-test
+  template:
+    metadata:
+      labels:
+        app: app-test
+    spec:
+      containers:
+      - image: 1.1.1
+        name: lyrics
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        envFrom:
+        - secretRef:
+            name: lyrics-app-redis
+        env:
+        - name: REDIS_DNS
+          value: lyrics-app-redis-master
+        - name: REDIS_PASSWORD
+          value: $(redis-password)
+        resources:
+          requests:
+            memory: 250Mi
+            cpu: 250m
+          limits:
+            memory: 500Mi
+            cpu: 500m

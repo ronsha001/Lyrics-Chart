@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: app-of-apps
+  name: app-of-deployment
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -11,14 +11,13 @@ metadata:
     argocd-image-updater.argoproj.io/git-branch: master
 spec:
   project: default
-
   source:
     repoURL: https://github.com/ronsha001/Lyrics-Chart.git
     targetRevision: HEAD
     path: apps
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: lyrics
 
   syncPolicy:
     syncOptions:

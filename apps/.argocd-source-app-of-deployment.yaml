@@ -1,3 +1,0 @@
-kustomize:
-  images:
-  - 651569844/lyrics:1.2.4
